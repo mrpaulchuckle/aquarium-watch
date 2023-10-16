@@ -5,15 +5,20 @@ import { HomeComponent } from './app/components/home/home.component';
 import { provideStore } from '@ngrx/store';
 import { API_BASE_URL } from './swagger/api-client';
 import { provideEffects } from '@ngrx/effects';
+import { provideHttpClient } from '@angular/common/http';
+import { effects, reducers } from './app/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 
 bootstrapApplication(AppComponent, {
   providers: [
-    { provide: API_BASE_URL, useValue: 'https://localhost:44312/' },
+    provideStore(reducers),
+    provideEffects(effects),
+    provideStoreDevtools(),
     provideRouter([
         { path: '', component: HomeComponent }
     ]),
-    provideStore(),
-    provideEffects()
+    provideHttpClient(),
+    { provide: API_BASE_URL, useValue: 'https://localhost:44312' }
 ]
 });

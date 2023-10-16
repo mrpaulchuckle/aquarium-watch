@@ -1,3 +1,4 @@
-<div>
-    Hello Hello
+<button (click)="createAquarium()">Create new Aquarium</button>
+<div *ngFor="let aquarium of (aquariums$ | async)">
+    <span>{{aquarium?.name}}</span>
 </div>

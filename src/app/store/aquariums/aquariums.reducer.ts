@@ -5,19 +5,18 @@ import { createFeature, createReducer, on } from "@ngrx/store";
 import { AquariumsActions } from "./aquariums.actions";
 
 export const adapter: EntityAdapter<Aquarium> = createEntityAdapter<Aquarium>();
-const initialState: AquariumsFeatureState = adapter.getInitialState();
+export const initialState: AquariumsFeatureState = adapter.getInitialState();
 
 export const aquariumsFeature = createFeature({
 	name: 'aquariums',
 	reducer: createReducer(
 		initialState,
 		on(AquariumsActions.loadAquariumsSuccess, (state, { aquariums }) => { return adapter.setAll(aquariums, state); }),
-	),
+		on(AquariumsActions.createAquariumSuccess, (state, { aquarium }) => { return adapter.upsertOne(aquarium, { ...state })})
+	)
 });
 
 export const {
 	name,
 	reducer
 } = aquariumsFeature;
-
-export const { selectAll } = adapter.getSelectors();

@@ -1,8 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AquariumComponent } from '../aquarium/aquarium.component';
 import { Store } from '@ngrx/store';
+import { AquariumsActions } from 'src/app/store/aquariums/aquariums.actions';
 import { selectAquariums } from 'src/app/store/aquariums/aquariums.selectors';
+import { AquariumType, CreateAquariumRequestDto } from 'src/swagger/api-client';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +13,19 @@ import { selectAquariums } from 'src/app/store/aquariums/aquariums.selectors';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent {
+  aquariums$ = this.store.select(selectAquariums);
 
-  constructor(private readonly store: Store){}
-
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  constructor(private readonly store: Store) {
+    this.store.dispatch(AquariumsActions.loadAquariums());
   }
 
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
+  createAquarium() {
+    const request: CreateAquariumRequestDto = {
+      name: 'test',
+      type: AquariumType.Cold
+    };
 
+    this.store.dispatch(AquariumsActions.createAquarium({ request }))
+  }
 }
