@@ -24,4 +24,12 @@ export class AquariumsEffects {
 			catchError(() => EMPTY)
 		))
 	));
+
+	deleteAquarium$ = createEffect(() => this.actions$.pipe(
+		ofType(AquariumsActions.deleteAquarium),
+		switchMap(({ id }) => this.apiClient.aquarium_DeleteAquarium(id).pipe(
+			map(_ => AquariumsActions.deleteAquariumSuccess({ id })),
+			catchError(() => EMPTY)
+		))
+	));
 }

@@ -1,0 +1,6 @@
+:host {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 4rem 0 minmax(0, 1fr);
+}

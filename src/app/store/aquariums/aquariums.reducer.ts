@@ -12,7 +12,8 @@ export const aquariumsFeature = createFeature({
 	reducer: createReducer(
 		initialState,
 		on(AquariumsActions.loadAquariumsSuccess, (state, { aquariums }) => { return adapter.setAll(aquariums, state); }),
-		on(AquariumsActions.createAquariumSuccess, (state, { aquarium }) => { return adapter.upsertOne(aquarium, { ...state })})
+		on(AquariumsActions.createAquariumSuccess, (state, { aquarium }) => { return adapter.upsertOne(aquarium, { ...state })}),
+		on(AquariumsActions.deleteAquariumSuccess, (state, { id }) => { return adapter.removeOne(id, state)}),
 	)
 });
 

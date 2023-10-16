@@ -9,6 +9,9 @@ export const AquariumsActions = createActionGroup({
 		'Load Aquariums Failed': emptyProps(),
 
 		'Create Aquarium': props<{ request: CreateAquariumRequestDto }>(),
-		'Create Aquarium Success': props<{ aquarium: Aquarium }>()
+		'Create Aquarium Success': props<{ aquarium: Aquarium }>(),
+
+		'Delete Aquarium': props<{ id: number }>(),
+		'Delete Aquarium Success': props<{ id: number }>()
 	}
 });

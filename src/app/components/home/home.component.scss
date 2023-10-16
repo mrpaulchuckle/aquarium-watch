@@ -1,0 +1,17 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+
+    button {
+        width: 5rem;
+    }
+}
+
+.aquariums {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    flex: 1;
+}

@@ -1,1 +1,12 @@
-<p>aquarium works!</p>
+<div 
+    class="aquarium-content" 
+    [class.cold]="aquarium?.type === AquariumType.Cold"
+    [class.tropical]="aquarium?.type === AquariumType.Tropical"
+    [class.marine]="aquarium?.type === AquariumType.Marine"
+>
+    <span>{{aquarium?.id}}</span>
+    <span>{{aquarium?.name}}</span>
+    <span>{{aquarium?.type}}</span>
+    <button class="delete-aquarium" (click)="deleteAquarium()">Delete</button>
+</div>
+
