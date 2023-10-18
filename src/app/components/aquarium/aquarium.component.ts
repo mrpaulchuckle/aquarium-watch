@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Aquarium, AquariumType } from 'src/swagger/api-client';
 import { Store } from '@ngrx/store';

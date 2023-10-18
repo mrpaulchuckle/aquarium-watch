@@ -26,6 +26,6 @@ export class HomeComponent {
       type: AquariumType.Cold
     };
 
-    this.store.dispatch(AquariumsActions.createAquarium({ request }))
+    this.store.dispatch(AquariumsActions.createAquarium({ request }));
   }
 }

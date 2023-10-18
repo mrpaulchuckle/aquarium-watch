@@ -1,0 +1,16 @@
+<form [formGroup]="aquariumForm" (ngSubmit)="onSubmit(aquariumForm)">
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+            <mat-option value="0">Cold</mat-option>
+            <mat-option value="1">Tropical</mat-option>
+            <mat-option value="2">Marine</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button type="submit">Submit</button>
+</form>

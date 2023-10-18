@@ -8,6 +8,8 @@ import { provideEffects } from '@ngrx/effects';
 import { provideHttpClient } from '@angular/common/http';
 import { effects, reducers } from './app/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { AquariumFormComponent } from './app/components/aquarium-form/aquarium-form.component';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 
 bootstrapApplication(AppComponent, {
@@ -16,9 +18,11 @@ bootstrapApplication(AppComponent, {
     provideEffects(effects),
     provideStoreDevtools(),
     provideRouter([
-        { path: '', component: HomeComponent }
+        { path: '', component: HomeComponent },
+        { path: 'aquarium', component: AquariumFormComponent }
     ]),
     provideHttpClient(),
-    { provide: API_BASE_URL, useValue: 'https://localhost:44312' }
+    { provide: API_BASE_URL, useValue: 'https://localhost:44312' },
+    provideAnimations()
 ]
 });
