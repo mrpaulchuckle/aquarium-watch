@@ -8,6 +8,7 @@ import { AquariumsActions } from 'src/app/store/aquariums/aquariums.actions';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-aquarium-form',
@@ -17,15 +18,19 @@ import { MatInputModule } from '@angular/material/input';
   styleUrls: ['./aquarium-form.component.scss']
 })
 export class AquariumFormComponent implements OnInit {
+  id: number | undefined;
   aquariumForm!: FormGroup;
 
-  constructor(private readonly store: Store<AppState>, private readonly fb: FormBuilder) {}
+  constructor(private readonly store: Store<AppState>, private readonly fb: FormBuilder, private readonly route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.aquariumForm = this.fb.group({
       name: ['', [Validators.required]],
       type: [AquariumType.Cold, [Validators.required]]
     });
+
+    this.id = this.route.snapshot.params['id'];
+    console.log(this.id);
   }
 
   onSubmit(form: FormGroup) {

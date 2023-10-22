@@ -243,15 +243,15 @@ export class ApiClient {
 }
 
 export interface AquariumDto {
-    id?: number;
-    name?: string;
-    highTemp?: number;
-    lowTemp?: number;
+    id: number;
+    name: string;
+    highTemp: number;
+    lowTemp: number;
     ph?: number;
     ammonia?: number;
     nitrite?: number;
     nitrate?: number;
-    type?: AquariumType;
+    type: AquariumType;
 }
 
 export enum AquariumType {

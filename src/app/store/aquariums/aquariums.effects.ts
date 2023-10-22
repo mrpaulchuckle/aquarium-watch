@@ -3,11 +3,12 @@ import { Store } from "@ngrx/store";
 import { ApiClient } from "src/swagger/api-client";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AquariumsActions } from "./aquariums.actions";
-import { EMPTY, catchError, map, switchMap } from "rxjs";
+import { EMPTY, catchError, map, switchMap, tap } from "rxjs";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class AquariumsEffects {
-    constructor(private actions$: Actions, private apiClient: ApiClient){}
+    constructor(private actions$: Actions, private apiClient: ApiClient, private readonly router: Router){}
 
 	loadAquariums$ = createEffect(() => this.actions$.pipe(
 		ofType(AquariumsActions.loadAquariums),
@@ -24,6 +25,11 @@ export class AquariumsEffects {
 			catchError(() => EMPTY)
 		))
 	));
+
+	createAquariumSuccess$ = createEffect(() => this.actions$.pipe(
+		ofType(AquariumsActions.createAquariumSuccess),
+		tap(_ => this.router.navigateByUrl('/'))
+	), { dispatch: false });
 
 	deleteAquarium$ = createEffect(() => this.actions$.pipe(
 		ofType(AquariumsActions.deleteAquarium),

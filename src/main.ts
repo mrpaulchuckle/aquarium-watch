@@ -19,7 +19,8 @@ bootstrapApplication(AppComponent, {
     provideStoreDevtools(),
     provideRouter([
         { path: '', component: HomeComponent },
-        { path: 'aquarium', component: AquariumFormComponent }
+        { path: 'create', component: AquariumFormComponent },
+        { path: 'edit/:id', component: AquariumFormComponent }
     ]),
     provideHttpClient(),
     { provide: API_BASE_URL, useValue: 'https://localhost:44312' },

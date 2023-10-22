@@ -34,7 +34,6 @@ $aquarium-watch-theme: mat.define-light-theme((
 @include mat.all-component-themes($aquarium-watch-theme);
 
 /* You can add global styles to this file, and also import other style files */
-
 * {
     margin: 0;
     padding: 0;
@@ -42,8 +41,25 @@ $aquarium-watch-theme: mat.define-light-theme((
 }
 
 body {
-    background-color: #BBD5ED;
+    background-color: #E8F1F2
 }
 
-html, body { height: 100%; }
+span {
+  user-select: none;
+}
+
+a {
+  cursor: pointer;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+html, body { 
+  height: 100%;
+  overflow: hidden;
+}
+
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

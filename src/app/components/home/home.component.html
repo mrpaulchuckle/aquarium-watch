@@ -1,4 +1,1 @@
-<button (click)="createAquarium()">Create new Aquarium</button>
-<div class="aquariums">
-    <app-aquarium *ngFor="let aquarium of (aquariums$ | async)" [aquarium]="aquarium"></app-aquarium>
-</div>
+<app-aquarium *ngFor="let aquarium of (aquariums$ | async)" [aquarium]="aquarium"></app-aquarium>
