@@ -10,6 +10,7 @@ import { effects, reducers } from './app/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { AquariumFormComponent } from './app/components/aquarium-form/aquarium-form.component';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { AquariumDetailComponent } from './app/components/aquarium-detail/aquarium-detail.component';
 
 
 bootstrapApplication(AppComponent, {
@@ -20,7 +21,7 @@ bootstrapApplication(AppComponent, {
     provideRouter([
         { path: '', component: HomeComponent },
         { path: 'create', component: AquariumFormComponent },
-        { path: 'edit/:id', component: AquariumFormComponent }
+        { path: 'edit/:id', component: AquariumDetailComponent }
     ]),
     provideHttpClient(),
     { provide: API_BASE_URL, useValue: 'https://localhost:44312' },

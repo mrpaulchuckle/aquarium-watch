@@ -1,3 +1,12 @@
+:host {
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+:host:hover, :host:focus {
+    transform: translateY(-0.25em);
+}
+
 a {
     text-decoration: none;
 }
@@ -10,7 +19,6 @@ a {
     flex-direction: column;
     row-gap: 1rem;
     padding: 1rem;
-    border-radius: 1rem;
     color: #F0F8FF;
 }
 
@@ -29,15 +37,15 @@ a {
 }
 
 .cold {
-    background-color: #6CB4EE;
+    background-color: #0C8383;
 }
 
 .tropical {
-    background-color: #0095B6;
+    background-color: #558B6E;
 }
 
 .marine {
-    background-color: #273BE2;
+    background-color: #0D3B66;
 }
 
 h1 {

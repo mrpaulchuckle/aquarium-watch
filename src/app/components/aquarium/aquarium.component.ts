@@ -4,7 +4,7 @@ import { Aquarium, AquariumDto, AquariumType } from 'src/swagger/api-client';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store';
 import { AquariumsActions } from 'src/app/store/aquariums/aquariums.actions';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-aquarium',
@@ -18,7 +18,7 @@ export class AquariumComponent {
 
   AquariumType = AquariumType;
 
-  constructor(private readonly store: Store<AppState>){}
+  constructor(private readonly store: Store<AppState>, private readonly router: Router){}
 
   deleteAquarium() {
     const id = this.aquarium?.id;
@@ -36,5 +36,14 @@ export class AquariumComponent {
     }
 
     return AquariumType[this.aquarium.type];
+  }
+
+  editAquarium() {
+    if (!this.aquarium) {
+      return;
+    }
+
+    this.store.dispatch(AquariumsActions.selectAquarium({id: this.aquarium.id}))
+		this.router.navigate(['edit', this.aquarium.id]);
   }
 }

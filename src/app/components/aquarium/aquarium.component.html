@@ -1,22 +1,19 @@
-<a [routerLink]="['edit', aquarium?.id]">
+<a (click)="editAquarium()">
     <article 
-    class="aquarium-content" 
-    [class.cold]="aquarium?.type === AquariumType.Cold"
-    [class.tropical]="aquarium?.type === AquariumType.Tropical"
-    [class.marine]="aquarium?.type === AquariumType.Marine"
->
-    <h1>{{aquarium?.name}}</h1>
-    <span>Type: {{getAquariumType()}}</span>
-    <span>High Temperature: {{aquarium?.highTemp}}</span>
-    <span>Low Temperature: {{aquarium?.lowTemp}}</span>
-    <span>pH {{aquarium?.ph}}</span>
-    <span>Ammonia: {{aquarium?.ammonia}}</span>
-    <span>Nitrite: {{aquarium?.nitrite}}</span>
-    <span>Nitrate: {{aquarium?.nitrate}}</span>
-    <button class="delete-aquarium" (click)="deleteAquarium()">
-        <img src="../../../assets/x.svg">
-    </button>
-</article>
+        class="aquarium-content" 
+        [class.cold]="aquarium?.type === AquariumType.Cold"
+        [class.tropical]="aquarium?.type === AquariumType.Tropical"
+        [class.marine]="aquarium?.type === AquariumType.Marine"
+    >
+        <h1>{{aquarium?.name}}</h1>
+        <span>Type: {{getAquariumType()}}</span>
+        <span>High Temperature: {{aquarium?.highTemp}}</span>
+        <span>Low Temperature: {{aquarium?.lowTemp}}</span>
+        <span>pH {{aquarium?.ph}}</span>
+        <span>Ammonia: {{aquarium?.ammonia}}</span>
+        <span>Nitrite: {{aquarium?.nitrite}}</span>
+        <span>Nitrate: {{aquarium?.nitrate}}</span>
+    </article>
 </a>
 
 

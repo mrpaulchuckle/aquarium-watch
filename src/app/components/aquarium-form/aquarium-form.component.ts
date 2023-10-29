@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
+import { selectAquariums } from 'src/app/store/aquariums/aquariums.selectors';
 
 @Component({
   selector: 'app-aquarium-form',
@@ -18,7 +19,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./aquarium-form.component.scss']
 })
 export class AquariumFormComponent implements OnInit {
-  id: number | undefined;
   aquariumForm!: FormGroup;
 
   constructor(private readonly store: Store<AppState>, private readonly fb: FormBuilder, private readonly route: ActivatedRoute) {}
@@ -29,12 +29,17 @@ export class AquariumFormComponent implements OnInit {
       type: [AquariumType.Cold, [Validators.required]]
     });
 
-    this.id = this.route.snapshot.params['id'];
-    console.log(this.id);
+    const aquariumId: number = this.route?.snapshot?.params['id'];
+
+    console.log(aquariumId);
+
+    this.store.select(selectAquariums).pipe(
+    ).subscribe(x => {
+      console.log(x);
+    });
   }
 
   onSubmit(form: FormGroup) {
-    console.log('submit');
     if (form.invalid) {
       return;
     }

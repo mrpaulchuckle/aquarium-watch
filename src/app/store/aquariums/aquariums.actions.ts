@@ -12,6 +12,8 @@ export const AquariumsActions = createActionGroup({
 		'Create Aquarium Success': props<{ aquarium: AquariumDto }>(),
 
 		'Delete Aquarium': props<{ id: number }>(),
-		'Delete Aquarium Success': props<{ id: number }>()
+		'Delete Aquarium Success': props<{ id: number }>(),
+
+		'Select Aquarium': props<{ id: number }>(),
 	}
 });
