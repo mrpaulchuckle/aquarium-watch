@@ -132,7 +132,7 @@ export class ApiClient {
         return _observableOf<SwaggerResponse<AquariumDto>>(new SwaggerResponse(status, _headers, null as any));
     }
 
-    aquarium_GetAquariumById(id: number): Observable<SwaggerResponse<Aquarium>> {
+    aquarium_GetAquariumById(id: number): Observable<SwaggerResponse<AquariumDto>> {
         let url_ = this.baseUrl + "/aquariums/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -154,14 +154,14 @@ export class ApiClient {
                 try {
                     return this.processAquarium_GetAquariumById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<SwaggerResponse<Aquarium>>;
+                    return _observableThrow(e) as any as Observable<SwaggerResponse<AquariumDto>>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<SwaggerResponse<Aquarium>>;
+                return _observableThrow(response_) as any as Observable<SwaggerResponse<AquariumDto>>;
         }));
     }
 
-    protected processAquarium_GetAquariumById(response: HttpResponseBase): Observable<SwaggerResponse<Aquarium>> {
+    protected processAquarium_GetAquariumById(response: HttpResponseBase): Observable<SwaggerResponse<AquariumDto>> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -171,7 +171,7 @@ export class ApiClient {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as Aquarium;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as AquariumDto;
             return _observableOf(new SwaggerResponse(status, _headers, result200));
             }));
         } else if (status === 400) {
@@ -185,7 +185,7 @@ export class ApiClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<SwaggerResponse<Aquarium>>(new SwaggerResponse(status, _headers, null as any));
+        return _observableOf<SwaggerResponse<AquariumDto>>(new SwaggerResponse(status, _headers, null as any));
     }
 
     aquarium_DeleteAquarium(id: number): Observable<SwaggerResponse<void>> {
@@ -227,12 +227,6 @@ export class ApiClient {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             return _observableOf<SwaggerResponse<void>>(new SwaggerResponse(status, _headers, null as any));
             }));
-        } else if (status === 400) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result400: any = null;
-            result400 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ProblemDetails;
-            return throwException("A server side error occurred.", status, _responseText, _headers, result400);
-            }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
@@ -273,18 +267,6 @@ export interface ProblemDetails {
 export interface CreateAquariumRequestDto {
     name: string;
     type: AquariumType;
-}
-
-export interface Aquarium {
-    id?: number;
-    name?: string;
-    highTemp?: number;
-    lowTemp?: number;
-    ph?: number;
-    ammonia?: number;
-    nitrite?: number;
-    nitrate?: number;
-    type?: AquariumType;
 }
 
 export class SwaggerResponse<TResult> {

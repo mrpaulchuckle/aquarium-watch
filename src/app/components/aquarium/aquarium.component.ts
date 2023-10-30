@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Aquarium, AquariumDto, AquariumType } from 'src/swagger/api-client';
+import { AquariumDto, AquariumType } from 'src/swagger/api-client';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store';
 import { AquariumsActions } from 'src/app/store/aquariums/aquariums.actions';
@@ -43,7 +43,6 @@ export class AquariumComponent {
       return;
     }
 
-    this.store.dispatch(AquariumsActions.selectAquarium({id: this.aquarium.id}))
 		this.router.navigate(['edit', this.aquarium.id]);
   }
 }

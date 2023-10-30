@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
-import { AquariumDto } from 'src/swagger/api-client';
 import { ActivatedRoute, Params } from '@angular/router';
 import { AppState } from 'src/app/store';
 import { Store } from '@ngrx/store';
-import { selectAquariumById } from 'src/app/store/aquariums/aquariums.selectors';
+import { AquariumsActions } from 'src/app/store/aquariums/aquariums.actions';
+import { selectSelectedId, selectedAquarium } from 'src/app/store/aquariums/aquariums.selectors';
 
 @Component({
   selector: 'app-aquarium-detail',
@@ -15,14 +14,14 @@ import { selectAquariumById } from 'src/app/store/aquariums/aquariums.selectors'
   styleUrls: ['./aquarium-detail.component.scss']
 })
 export class AquariumDetailComponent implements OnInit {
-  aquarium$!: Observable<AquariumDto | undefined>;
+  aquarium$ = this.store.select(selectedAquarium);
 
   constructor(private route: ActivatedRoute, private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(
       (params: Params) => {
-        this.aquarium$ = this.store.select(selectAquariumById(params['id']));
+        this.store.dispatch(AquariumsActions.loadAquarium({ id: params['id'] }));
       }
     )
   }

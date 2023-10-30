@@ -38,4 +38,17 @@ export class AquariumsEffects {
 			catchError(() => EMPTY)
 		))
 	));
+
+	loadAquarium$ = createEffect(() => this.actions$.pipe(
+		ofType(AquariumsActions.loadAquarium),
+		switchMap(({ id }) => this.apiClient.aquarium_GetAquariumById(id).pipe(
+			map(data => AquariumsActions.loadAquariumSuccess({ aquarium: data.result })),
+			catchError(() => [AquariumsActions.loadAquariumFailed()])
+		))
+	));
+
+	loadAquariumSuccess$ = createEffect(() => this.actions$.pipe(
+		ofType(AquariumsActions.loadAquariumSuccess),
+		map(({ aquarium }) => AquariumsActions.selectAquarium({ id: aquarium.id }))
+	))
 }

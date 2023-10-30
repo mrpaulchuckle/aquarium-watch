@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { Aquarium, AquariumDto, CreateAquariumRequestDto } from 'src/swagger/api-client';
+import { AquariumDto, CreateAquariumRequestDto } from 'src/swagger/api-client';
 
 export const AquariumsActions = createActionGroup({
 	source: 'Aquariums',
@@ -14,6 +14,10 @@ export const AquariumsActions = createActionGroup({
 		'Delete Aquarium': props<{ id: number }>(),
 		'Delete Aquarium Success': props<{ id: number }>(),
 
-		'Select Aquarium': props<{ id: number }>(),
+		'Load Aquarium': props<{ id: number }>(),
+		'Load Aquarium Success': props<{ aquarium: AquariumDto }>(),
+		'Load Aquarium Failed': emptyProps(),
+
+		'Select Aquarium': props<{ id: number }>()
 	}
 });

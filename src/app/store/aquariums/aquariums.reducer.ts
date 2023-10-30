@@ -7,6 +7,7 @@ import { AquariumsActions } from "./aquariums.actions";
 export const adapter: EntityAdapter<AquariumDto> = createEntityAdapter<AquariumDto>();
 
 export const initialState: AquariumsState = adapter.getInitialState({
+	selectedId: undefined,
 	loading: true
 });
 
@@ -17,7 +18,10 @@ export const aquariumsFeature = createFeature({
 		on(AquariumsActions.loadAquariums, (state) => ({ ...state, loading: true })),
 		on(AquariumsActions.loadAquariumsSuccess, (state, { aquariums }) => ({ ...adapter.setAll(aquariums, { ...state, loading: false }) })),
 		on(AquariumsActions.createAquariumSuccess, (state, { aquarium }) => ({ ...adapter.addOne(aquarium, { ...state })})),
-		on(AquariumsActions.deleteAquariumSuccess, (state, { id }) => ({ ...adapter.removeOne(id, state)}))
+		on(AquariumsActions.deleteAquariumSuccess, (state, { id }) => ({ ...adapter.removeOne(id, state)})),
+		on(AquariumsActions.loadAquarium, (state) => ({ ...state, loading: true })),
+		on(AquariumsActions.loadAquariumSuccess, (state, { aquarium }) => ({ ...adapter.upsertOne(aquarium, { ...state, loading: false })})),
+		on(AquariumsActions.selectAquarium, (state, { id}) => ({ ...state, selectedId: id }))
 	)
 });
 
