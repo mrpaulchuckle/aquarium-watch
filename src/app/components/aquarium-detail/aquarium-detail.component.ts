@@ -4,7 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { AppState } from 'src/app/store';
 import { Store } from '@ngrx/store';
 import { AquariumsActions } from 'src/app/store/aquariums/aquariums.actions';
-import { selectSelectedId, selectedAquarium } from 'src/app/store/aquariums/aquariums.selectors';
+import { selectedAquarium } from 'src/app/store/aquariums/aquariums.selectors';
 
 @Component({
   selector: 'app-aquarium-detail',

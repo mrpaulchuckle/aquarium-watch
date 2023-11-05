@@ -4,20 +4,20 @@ import { AquariumDto, CreateAquariumRequestDto } from 'src/swagger/api-client';
 export const AquariumsActions = createActionGroup({
 	source: 'Aquariums',
 	events: {
-		'Load Aquariums': emptyProps(),
-		'Load Aquariums Success': props<{ aquariums: AquariumDto[] }>(),
-		'Load Aquariums Failed': emptyProps(),
+		loadAquariums: emptyProps(),
+		loadAquariumsSuccess: props<{ aquariums: AquariumDto[] }>(),
+		loadAquariumsFailed: emptyProps(),
 
-		'Create Aquarium': props<{ request: CreateAquariumRequestDto }>(),
-		'Create Aquarium Success': props<{ aquarium: AquariumDto }>(),
+		createAquarium: props<{ request: CreateAquariumRequestDto }>(),
+		createAquariumSuccess: props<{ aquarium: AquariumDto }>(),
 
-		'Delete Aquarium': props<{ id: number }>(),
-		'Delete Aquarium Success': props<{ id: number }>(),
+		deleteAquarium: props<{ id: number }>(),
+		deleteAquariumSuccess: props<{ id: number }>(),
 
-		'Load Aquarium': props<{ id: number }>(),
-		'Load Aquarium Success': props<{ aquarium: AquariumDto }>(),
-		'Load Aquarium Failed': emptyProps(),
+		loadAquarium: props<{ id: number }>(),
+		loadAquariumSuccess: props<{ aquarium: AquariumDto }>(),
+		loadAquariumFailed: emptyProps(),
 
-		'Select Aquarium': props<{ id: number }>()
+		selectAquarium: props<{ id: number }>()
 	}
 });
