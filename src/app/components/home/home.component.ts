@@ -4,8 +4,8 @@ import { AquariumComponent } from '../aquarium/aquarium.component';
 import { Store } from '@ngrx/store';
 import { AquariumsActions } from 'src/app/store/aquariums/aquariums.actions';
 import { AppState } from 'src/app/store';
-import { selectAquariums } from 'src/app/store/aquariums/aquariums.selectors';
 import { AquariumDto } from 'src/swagger/api-client';
+import { aquariumsFeature } from 'src/app/store/aquariums/aquariums.reducer';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +15,7 @@ import { AquariumDto } from 'src/swagger/api-client';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  aquariums: Signal<AquariumDto[]> = this.store.selectSignal(selectAquariums);
+  aquariums: Signal<AquariumDto[]> = this.store.selectSignal(aquariumsFeature.selectAll);
 
   constructor(private readonly store: Store<AppState>) {
     this.store.dispatch(AquariumsActions.loadAquariums());

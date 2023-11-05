@@ -9,7 +9,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
-import { selectAquariums } from 'src/app/store/aquariums/aquariums.selectors';
 
 @Component({
   selector: 'app-aquarium-form',
@@ -27,15 +26,6 @@ export class AquariumFormComponent implements OnInit {
     this.aquariumForm = this.fb.group({
       name: ['', [Validators.required]],
       type: [AquariumType.Cold, [Validators.required]]
-    });
-
-    const aquariumId: number = this.route?.snapshot?.params['id'];
-
-    console.log(aquariumId);
-
-    this.store.select(selectAquariums).pipe(
-    ).subscribe(x => {
-      console.log(x);
     });
   }
 

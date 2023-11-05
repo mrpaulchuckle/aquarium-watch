@@ -1,13 +1,13 @@
 import { EntityAdapter, createEntityAdapter } from "@ngrx/entity";
 import { AquariumDto } from "src/swagger/api-client";
 import { AquariumsState } from "./aquariums.model";
-import { createFeature, createReducer, on } from "@ngrx/store";
+import { createFeature, createReducer, createSelector, on } from "@ngrx/store";
 import { AquariumsActions } from "./aquariums.actions";
 
 export const adapter: EntityAdapter<AquariumDto> = createEntityAdapter<AquariumDto>();
 
 export const initialState: AquariumsState = adapter.getInitialState({
-	selectedId: undefined,
+	selectedAquariumId: null,
 	loading: true
 });
 
@@ -21,18 +21,23 @@ export const aquariumsFeature = createFeature({
 		on(AquariumsActions.deleteAquariumSuccess, (state, { id }) => ({ ...adapter.removeOne(id, state)})),
 		on(AquariumsActions.loadAquarium, (state) => ({ ...state, loading: true })),
 		on(AquariumsActions.loadAquariumSuccess, (state, { aquarium }) => ({ ...adapter.upsertOne(aquarium, { ...state, loading: false })})),
-		on(AquariumsActions.selectAquarium, (state, { id}) => ({ ...state, selectedId: id }))
-	)
+		on(AquariumsActions.selectAquarium, (state, { id }) => ({ ...state, selectedAquariumId: id }))
+	),
+	extraSelectors: ({
+		selectAquariumsState,
+		selectEntities,
+		selectSelectedAquariumId
+	}) => ({
+		...adapter.getSelectors(selectAquariumsState),
+		selectSelectedAquarium: createSelector(
+			selectSelectedAquariumId,
+			selectEntities,
+			(selectedId, entities) => selectedId ? entities[selectedId] : null
+		  ),
+	})
 });
 
 export const {
 	name,
-	reducer,
+	reducer
 } = aquariumsFeature;
-
-export const {
-	selectIds,
-	selectEntities,
-	selectAll,
-	selectTotal,
-} = adapter.getSelectors();

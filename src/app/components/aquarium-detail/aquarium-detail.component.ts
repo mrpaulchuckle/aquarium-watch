@@ -4,7 +4,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { AppState } from 'src/app/store';
 import { Store } from '@ngrx/store';
 import { AquariumsActions } from 'src/app/store/aquariums/aquariums.actions';
-import { selectedAquarium } from 'src/app/store/aquariums/aquariums.selectors';
+import { aquariumsFeature } from 'src/app/store/aquariums/aquariums.reducer';
+import { AquariumsHelper } from 'src/app/helpers/aquariums.helper';
 
 @Component({
   selector: 'app-aquarium-detail',
@@ -14,13 +15,16 @@ import { selectedAquarium } from 'src/app/store/aquariums/aquariums.selectors';
   styleUrls: ['./aquarium-detail.component.scss']
 })
 export class AquariumDetailComponent implements OnInit {
-  aquarium$ = this.store.select(selectedAquarium);
+  aquarium = this.store.selectSignal(aquariumsFeature.selectSelectedAquarium);
+
+  AquariumsHelper = AquariumsHelper;
 
   constructor(private route: ActivatedRoute, private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(
       (params: Params) => {
+        console.log(params['id']);
         this.store.dispatch(AquariumsActions.loadAquarium({ id: params['id'] }));
       }
     )

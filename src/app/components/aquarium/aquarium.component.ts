@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store';
 import { AquariumsActions } from 'src/app/store/aquariums/aquariums.actions';
 import { Router, RouterModule } from '@angular/router';
+import { AquariumsHelper } from 'src/app/helpers/aquariums.helper';
 
 @Component({
   selector: 'app-aquarium',
@@ -17,6 +18,7 @@ export class AquariumComponent {
   @Input() aquarium: AquariumDto | undefined;
 
   AquariumType = AquariumType;
+  AquariumsHelper = AquariumsHelper;
 
   constructor(private readonly store: Store<AppState>, private readonly router: Router){}
 
@@ -28,14 +30,6 @@ export class AquariumComponent {
     }
 
     this.store.dispatch(AquariumsActions.deleteAquarium({ id }));
-  }
-
-  getAquariumType(): string {
-    if (!this.aquarium?.type) {
-      return '';
-    }
-
-    return AquariumType[this.aquarium.type];
   }
 
   editAquarium() {
