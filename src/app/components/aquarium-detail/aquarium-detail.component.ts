@@ -6,16 +6,18 @@ import { Store } from '@ngrx/store';
 import { AquariumsActions } from 'src/app/store/aquariums/aquariums.actions';
 import { aquariumsFeature } from 'src/app/store/aquariums/aquariums.reducer';
 import { AquariumsHelper } from 'src/app/helpers/aquariums.helper';
+import { StatisticTileComponent } from '../statistic-tile/statistic-tile.component';
 
 @Component({
   selector: 'app-aquarium-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, StatisticTileComponent],
   templateUrl: './aquarium-detail.component.html',
   styleUrls: ['./aquarium-detail.component.scss']
 })
 export class AquariumDetailComponent implements OnInit {
   aquarium = this.store.selectSignal(aquariumsFeature.selectSelectedAquarium);
+  loading = this.store.selectSignal(aquariumsFeature.selectLoading);
 
   AquariumsHelper = AquariumsHelper;
 
@@ -24,7 +26,6 @@ export class AquariumDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(
       (params: Params) => {
-        console.log(params['id']);
         this.store.dispatch(AquariumsActions.loadAquarium({ id: params['id'] }));
       }
     )

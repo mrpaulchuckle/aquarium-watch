@@ -16,6 +16,7 @@ import { aquariumsFeature } from 'src/app/store/aquariums/aquariums.reducer';
 })
 export class HomeComponent {
   aquariums: Signal<AquariumDto[]> = this.store.selectSignal(aquariumsFeature.selectAll);
+  loading = this.store.selectSignal(aquariumsFeature.selectLoading);
 
   constructor(private readonly store: Store<AppState>) {
     this.store.dispatch(AquariumsActions.loadAquariums());

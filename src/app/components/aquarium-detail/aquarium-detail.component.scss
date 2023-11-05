@@ -1,0 +1,34 @@
+:host {
+    width: 100%;
+    height: 100%;
+}
+
+.aquarium {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 200px minmax(0, 1fr);
+
+    &-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+    }
+
+    &-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+        overflow-y: auto;
+
+        &-tile {
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+    }
+}
