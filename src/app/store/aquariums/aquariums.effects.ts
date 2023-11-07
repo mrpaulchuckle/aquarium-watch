@@ -25,13 +25,6 @@ export const createAquarium = createEffect((actions$ = inject(Actions), apiClien
 	);
 }, { functional: true });
 
-export const createAquariumSuccess = createEffect((actions$ = inject(Actions), router = inject(Router)) => {
-	return actions$.pipe(
-		ofType(AquariumsActions.createAquariumSuccess),
-		tap(_ => router.navigateByUrl('/'))
-	)
-}, { dispatch: false, functional: true });
-
 export const deleteAquarium = createEffect((actions$ = inject(Actions), apiClient = inject(ApiClient)) => {
 	return actions$.pipe(
 		ofType(AquariumsActions.deleteAquarium),
