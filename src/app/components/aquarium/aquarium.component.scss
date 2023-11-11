@@ -17,17 +17,25 @@ a {
     flex-direction: column;
     row-gap: 1rem;
     color: #023e8a;
-    padding: 0.5rem;
+    overflow: hidden;
 
-    &-temp {
+    &-header {
         position: absolute;
         top: 0.5rem;
-        right: 0.5rem;
+        left: 0.5rem;
+        width: calc(100% - 1rem);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         font-size: 24px;
-    }
 
-    &-title {
-        font-size: 24px;
+        &-temp {
+            font-size: inherit;
+        }
+    
+        &-title {
+            font-size: inherit;
+        }
     }
 
     &-body {
@@ -36,5 +44,17 @@ a {
         padding-bottom: 75%;
         overflow: hidden;
         border-radius: 8px;
+
+        svg {
+            bottom: 0;
+            position: absolute;
+        }
     }
+}
+
+.seaweed {
+    width: 48px;
+    position: absolute;
+    bottom: 48px;
+    right: 8px;
 }
