@@ -41,7 +41,7 @@ $aquarium-watch-theme: mat.define-light-theme((
 }
 
 body {
-    background-color: #C0E8F9;
+    background-color: #fefcfb;
 }
 
 span {
@@ -62,4 +62,7 @@ html, body {
   overflow: hidden;
 }
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  margin: 0; 
+  font-family: 'Ubuntu', sans-serif;
+}

@@ -1,8 +1,7 @@
 :host {
-    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
     padding: 0.5rem 1rem;
-    background-color: #274C77;
-    color: #fff;
+    color: #023e8a;
+    box-shadow: rgba(0, 0, 0, 0.075) 0 1px;
 }
 
 nav {
@@ -13,7 +12,6 @@ nav {
 
 a {
     font-weight: 500;
-    padding: 0 1rem;
     line-height: 36px;
     text-decoration: none;
     min-width: 64px;
@@ -21,11 +19,6 @@ a {
 
 
     &.home {
-        display: flex;
-        gap: 0.5rem;
-
-        img {
-            max-width: 2rem;
-        }
+        font-size: 24px;
     }
 }
