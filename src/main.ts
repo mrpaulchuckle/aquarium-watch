@@ -17,7 +17,7 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideStore(reducers),
     provideEffects(effects),
-    provideStoreDevtools(),
+    provideStoreDevtools({connectInZone: true}),
     provideRouter([
         { path: '', component: HomeComponent },
         { path: 'create', component: AquariumFormComponent },

@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "aquarium-watch:build:production"
+              "buildTarget": "aquarium-watch:build:production"
             },
             "development": {
-              "browserTarget": "aquarium-watch:build:development"
+              "buildTarget": "aquarium-watch:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "aquarium-watch:build"
+            "buildTarget": "aquarium-watch:build"
           }
         },
         "test": {
