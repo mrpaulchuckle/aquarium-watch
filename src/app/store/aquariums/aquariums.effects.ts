@@ -2,8 +2,7 @@ import { inject } from "@angular/core";
 import { ApiClient } from "src/swagger/api-client";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AquariumsActions } from "./aquariums.actions";
-import { EMPTY, catchError, map, switchMap, tap } from "rxjs";
-import { Router } from "@angular/router";
+import { EMPTY, catchError, map, switchMap } from "rxjs";
 
 export const loadAquariums = createEffect((actions$ = inject(Actions), apiClient = inject(ApiClient)) => {
 	return actions$.pipe(

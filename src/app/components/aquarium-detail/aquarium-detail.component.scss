@@ -19,12 +19,12 @@
     &-content {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 1rem;
-        padding: 1rem;
+        gap: 16px;
+        padding: 16px;
         overflow-y: auto;
 
         &-tile {
-            padding: 1rem 1.5rem;
+            padding: 16px 24px;
             display: flex;
             align-items: center;
             justify-content: center;
