@@ -3,6 +3,7 @@
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
 // Plus imports for other components in your app.
+@use './app/styles/variables';
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -38,10 +39,12 @@ $aquarium-watch-theme: mat.define-light-theme((
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: var(--rich-black);
+    font-family: 'Ubuntu', sans-serif;
 }
 
 body {
-    background-color: #fefcfb;
+    background-color: var(--anti-flash-white);
 }
 
 span {
@@ -64,5 +67,4 @@ html, body {
 
 body { 
   margin: 0; 
-  font-family: 'Ubuntu', sans-serif;
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -11,4 +11,9 @@ import { RouterModule } from '@angular/router';
 })
 export class NavComponent {
 
+  constructor(private readonly router: Router){}
+
+  goToCreate() {
+    this.router.navigate(['create']);
+  }
 }

@@ -31,11 +31,15 @@ export class AquariumFormComponent implements OnInit, OnDestroy {
       type: [AquariumType.Cold, [Validators.required]]
     });
 
-    this.subscriptions.add(this.actions.pipe(ofType(AquariumsActions.createAquariumSuccess)).subscribe(_ => this.router.navigateByUrl('/')));
+    this.subscriptions.add(this.actions.pipe(ofType(AquariumsActions.createAquariumSuccess)).subscribe(_ => this.goHome()));
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  goHome() {
+    this.router.navigateByUrl('/');
   }
 
   onSubmit(form: FormGroup) {
