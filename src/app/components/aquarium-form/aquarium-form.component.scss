@@ -1,5 +1,40 @@
-form {
-    padding: 8px 16px;
+:host {
+    padding: 16px;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.create-aquarium {
+    display: grid;
+    row-gap: 16px;
+
+    &-form {
+        display: flex;
+        flex-direction: column;
+
+        &-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 16px;
+            width: 100%;
+
+            &-button {
+                border-radius: 8px;
+                padding: 16px;
+                font-size: 1rem;
+
+                &.cancel {
+                    border: 1px solid var(--lapis-lazuli);
+                }
+
+                &.submit {
+                    background-color: var(--lapis-lazuli);
+                    color: var(--anti-flash-white);
+                }
+            }
+        }
+    }
 }
