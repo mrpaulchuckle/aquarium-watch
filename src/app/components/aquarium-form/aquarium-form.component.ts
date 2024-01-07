@@ -27,8 +27,9 @@ export class AquariumFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.aquariumForm = this.fb.group({
-      name: ['', [Validators.required]],
-      type: [AquariumType.Cold, [Validators.required]]
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      type: [null, [Validators.required]],
+      description: ['', [Validators.required, Validators.maxLength(255)]]
     });
 
     this.subscriptions.add(this.actions.pipe(ofType(AquariumsActions.createAquariumSuccess)).subscribe(_ => this.goHome()));
@@ -49,7 +50,8 @@ export class AquariumFormComponent implements OnInit, OnDestroy {
 
     const request: CreateAquariumRequestDto = {
       name: form.value.name,
-      type: parseInt(form.value.type)
+      type: parseInt(form.value.type),
+      description: form.value.description
     };
 
     this.store.dispatch(AquariumsActions.createAquarium({ request }));
