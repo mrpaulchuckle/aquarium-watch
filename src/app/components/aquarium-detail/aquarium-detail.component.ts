@@ -6,12 +6,11 @@ import { Store } from '@ngrx/store';
 import { AquariumsActions } from 'src/app/store/aquariums/aquariums.actions';
 import { aquariumsFeature } from 'src/app/store/aquariums/aquariums.reducer';
 import { AquariumsHelper } from 'src/app/helpers/aquariums.helper';
-import { StatisticTileComponent } from '../statistic-tile/statistic-tile.component';
 
 @Component({
   selector: 'app-aquarium-detail',
   standalone: true,
-  imports: [CommonModule, StatisticTileComponent],
+  imports: [CommonModule],
   templateUrl: './aquarium-detail.component.html',
   styleUrls: ['./aquarium-detail.component.scss']
 })
