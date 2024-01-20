@@ -1,8 +1,8 @@
 import { inject } from "@angular/core";
-import { ApiClient } from "src/swagger/api-client";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AquariumsActions } from "./aquariums.actions";
 import { EMPTY, catchError, map, switchMap } from "rxjs";
+import { ApiClient } from "../../../swagger/api-client";
 
 export const loadAquariums = createEffect((actions$ = inject(Actions), apiClient = inject(ApiClient)) => {
 	return actions$.pipe(
@@ -50,3 +50,13 @@ export const loadAquariumSuccess = createEffect((actions$ = inject(Actions)) => 
 		map(({ aquarium }) => AquariumsActions.selectAquarium({ id: aquarium.id }))
 	)
 }, { functional: true })
+
+export const updateAquarium = createEffect((actions$ = inject(Actions), apiClient = inject(ApiClient)) => {
+	return actions$.pipe(
+		ofType(AquariumsActions.updateAquarium),
+		switchMap(({ request }) => apiClient.aquarium_UpdateAquarium(request.id + '', request).pipe(
+			map(_ => AquariumsActions.updateAquariumSuccess()),
+			catchError(() => EMPTY)
+		))
+	);
+}, { functional: true });

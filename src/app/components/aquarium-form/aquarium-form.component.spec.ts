@@ -76,6 +76,8 @@ describe('AquariumFormComponent', () => {
       name: formValue.name,
       type: parseInt(formValue.type),
       description: formValue.description,
+      highTemp: formValue.highTemp,
+      lowTemp: formValue.lowTemp
     };
 
     component.onSubmit(component.aquariumForm);

@@ -43,7 +43,9 @@ describe('Aquariums Effects', () => {
         const request: CreateAquariumRequestDto = {
             name: aquariumMock.name,
             description: aquariumMock.description,
-            type: aquariumMock.type
+            type: aquariumMock.type,
+            highTemp: aquariumMock.highTemp,
+            lowTemp: aquariumMock.lowTemp
         };
 
         const apiClientMock = {

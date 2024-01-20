@@ -6,11 +6,12 @@ import { aquariumsFeature } from '../../store/aquariums/aquariums.reducer';
 import { AquariumsHelper } from '../../helpers/aquariums.helper';
 import { AppState } from '../../store';
 import { AquariumsActions } from '../../store/aquariums/aquariums.actions';
+import { AquariumFormComponent } from '../aquarium-form/aquarium-form.component';
 
 @Component({
   selector: 'app-aquarium-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AquariumFormComponent],
   templateUrl: './aquarium-detail.component.html',
   styleUrls: ['./aquarium-detail.component.scss']
 })

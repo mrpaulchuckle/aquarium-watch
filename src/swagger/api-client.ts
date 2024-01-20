@@ -300,10 +300,6 @@ export interface AquariumDto {
     highTemp: number;
     lowTemp: number;
     type: AquariumType;
-    ph?: number;
-    ammonia?: number;
-    nitrite?: number;
-    nitrate?: number;
 }
 
 export enum AquariumType {
@@ -326,6 +322,8 @@ export interface CreateAquariumRequestDto {
     name: string;
     type: AquariumType;
     description: string;
+    highTemp: number;
+    lowTemp: number;
 }
 
 export interface UpdateAquariumRequestDto {
@@ -333,6 +331,8 @@ export interface UpdateAquariumRequestDto {
     name: string;
     type: AquariumType;
     description: string;
+    highTemp: number;
+    lowTemp: number;
 }
 
 export class SwaggerResponse<TResult> {
