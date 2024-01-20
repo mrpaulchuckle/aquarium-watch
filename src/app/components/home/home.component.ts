@@ -1,11 +1,11 @@
-import { Component, Signal } from '@angular/core';
+import { Component, OnInit, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AquariumComponent } from '../aquarium/aquarium.component';
 import { Store } from '@ngrx/store';
-import { AquariumsActions } from 'src/app/store/aquariums/aquariums.actions';
-import { AppState } from 'src/app/store';
-import { AquariumDto } from 'src/swagger/api-client';
-import { aquariumsFeature } from 'src/app/store/aquariums/aquariums.reducer';
+import { aquariumsFeature } from '../../store/aquariums/aquariums.reducer';
+import { AquariumDto } from '../../../swagger/api-client';
+import { AppState } from '../../store';
+import { AquariumsActions } from '../../store/aquariums/aquariums.actions';
 
 @Component({
   selector: 'app-home',
@@ -14,11 +14,13 @@ import { aquariumsFeature } from 'src/app/store/aquariums/aquariums.reducer';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   aquariums: Signal<AquariumDto[]> = this.store.selectSignal(aquariumsFeature.selectAll);
   loading = this.store.selectSignal(aquariumsFeature.selectLoading);
 
-  constructor(private readonly store: Store<AppState>) {
+  constructor(private readonly store: Store<AppState>) {}
+  
+  ngOnInit(): void {
     this.store.dispatch(AquariumsActions.loadAquariums());
   }
 }

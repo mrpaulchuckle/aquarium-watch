@@ -1,9 +1,13 @@
 <div class="create-aquarium">
-    <h1 class="create-aquarium-title">Create New Aquarium</h1>
     <form class="create-aquarium-form" [formGroup]="aquariumForm" (ngSubmit)="onSubmit(aquariumForm)">
         <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
             <input formControlName="name" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input formControlName="description" matInput>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -14,6 +18,18 @@
                 <mat-option value="2">Marine</mat-option>
             </mat-select>
         </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Lowest Temperature</mat-label>
+            <input type="number" formControlName="lowTemp" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Highest Temperature</mat-label>
+            <input type="number" formControlName="highTemp" matInput>
+        </mat-form-field>
+
+
         <div class="create-aquarium-form-buttons">
             <button class="create-aquarium-form-buttons-button cancel" type="button" (click)="goHome()">Cancel</button>
             <button class="create-aquarium-form-buttons-button submit" type="submit">Submit</button>

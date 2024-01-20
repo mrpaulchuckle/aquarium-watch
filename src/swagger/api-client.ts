@@ -234,17 +234,71 @@ export class ApiClient {
         }
         return _observableOf<SwaggerResponse<void>>(new SwaggerResponse(status, _headers, null as any));
     }
+
+    aquarium_UpdateAquarium(id: string, request: UpdateAquariumRequestDto): Observable<SwaggerResponse<void>> {
+        let url_ = this.baseUrl + "/aquariums/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(request);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processAquarium_UpdateAquarium(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processAquarium_UpdateAquarium(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<SwaggerResponse<void>>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<SwaggerResponse<void>>;
+        }));
+    }
+
+    protected processAquarium_UpdateAquarium(response: HttpResponseBase): Observable<SwaggerResponse<void>> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf<SwaggerResponse<void>>(new SwaggerResponse(status, _headers, null as any));
+            }));
+        } else if (status === 404) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result404: any = null;
+            result404 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ProblemDetails;
+            return throwException("A server side error occurred.", status, _responseText, _headers, result404);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<SwaggerResponse<void>>(new SwaggerResponse(status, _headers, null as any));
+    }
 }
 
 export interface AquariumDto {
     id: number;
     name: string;
+    description: string;
     highTemp: number;
     lowTemp: number;
-    ph?: number;
-    ammonia?: number;
-    nitrite?: number;
-    nitrate?: number;
     type: AquariumType;
 }
 
@@ -267,6 +321,18 @@ export interface ProblemDetails {
 export interface CreateAquariumRequestDto {
     name: string;
     type: AquariumType;
+    description: string;
+    highTemp: number;
+    lowTemp: number;
+}
+
+export interface UpdateAquariumRequestDto {
+    id: number;
+    name: string;
+    type: AquariumType;
+    description: string;
+    highTemp: number;
+    lowTemp: number;
 }
 
 export class SwaggerResponse<TResult> {

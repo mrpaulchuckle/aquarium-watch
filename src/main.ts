@@ -8,9 +8,9 @@ import { provideEffects } from '@ngrx/effects';
 import { provideHttpClient } from '@angular/common/http';
 import { effects, reducers } from './app/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { AquariumFormComponent } from './app/components/aquarium-form/aquarium-form.component';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { AquariumDetailComponent } from './app/components/aquarium-detail/aquarium-detail.component';
+import { CreateAquariumComponent } from './app/components/create-aquarium/create-aquarium.component';
 
 
 bootstrapApplication(AppComponent, {
@@ -20,7 +20,7 @@ bootstrapApplication(AppComponent, {
     provideStoreDevtools({connectInZone: true}),
     provideRouter([
         { path: '', component: HomeComponent },
-        { path: 'create', component: AquariumFormComponent },
+        { path: 'create', component: CreateAquariumComponent },
         { path: 'edit/:id', component: AquariumDetailComponent }
     ]),
     provideHttpClient(),
