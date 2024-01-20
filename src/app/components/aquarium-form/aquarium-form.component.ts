@@ -1,16 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AquariumType, CreateAquariumRequestDto } from 'src/swagger/api-client';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActionsSubject, Store } from '@ngrx/store';
-import { AppState } from 'src/app/store';
-import { AquariumsActions } from 'src/app/store/aquariums/aquariums.actions';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ofType } from '@ngrx/effects';
+import { AppState } from '../../store';
+import { AquariumsActions } from '../../store/aquariums/aquariums.actions';
+import { CreateAquariumRequestDto } from '../../../swagger/api-client';
 
 @Component({
   selector: 'app-aquarium-form',

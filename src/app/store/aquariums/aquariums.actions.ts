@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { AquariumDto, CreateAquariumRequestDto } from 'src/swagger/api-client';
+import { AquariumDto, CreateAquariumRequestDto } from '../../../swagger/api-client';
 
 export const AquariumsActions = createActionGroup({
 	source: 'Aquariums',

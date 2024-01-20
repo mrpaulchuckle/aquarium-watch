@@ -1,7 +1,7 @@
 import { of } from "rxjs";
 import { AquariumsActions } from "./aquariums.actions";
 import { createAquarium, deleteAquarium, loadAquarium, loadAquariumSuccess, loadAquariums } from "./aquariums.effects";
-import { ApiClient, AquariumDto, AquariumType, CreateAquariumRequestDto, SwaggerResponse } from "src/swagger/api-client";
+import { ApiClient, AquariumDto, AquariumType, CreateAquariumRequestDto, SwaggerResponse } from "../../../swagger/api-client";
 
 describe('Aquariums Effects', () => {
     it('loads aquariums successfully', (done) => {
@@ -9,6 +9,7 @@ describe('Aquariums Effects', () => {
             {
                 id: 1,
                 name: 'test',
+                description: 'test',
                 highTemp: 3,
                 lowTemp: 2,
                 type: AquariumType.Cold
@@ -33,6 +34,7 @@ describe('Aquariums Effects', () => {
         const aquariumMock: AquariumDto = {
             id: 1,
             name: 'test',
+            description: 'test',
             highTemp: 3,
             lowTemp: 2,
             type: AquariumType.Cold
@@ -40,6 +42,7 @@ describe('Aquariums Effects', () => {
 
         const request: CreateAquariumRequestDto = {
             name: aquariumMock.name,
+            description: aquariumMock.description,
             type: aquariumMock.type
         };
 
@@ -76,6 +79,7 @@ describe('Aquariums Effects', () => {
         const aquariumMock: AquariumDto = {
             id: 1,
             name: 'test',
+            description: 'test',
             highTemp: 3,
             lowTemp: 2,
             type: AquariumType.Cold
@@ -98,6 +102,7 @@ describe('Aquariums Effects', () => {
       it('selects aquarium successfully', (done) => {
         const aquariumMock: AquariumDto = {
             id: 1,
+            description: 'test',
             name: 'test',
             highTemp: 3,
             lowTemp: 2,

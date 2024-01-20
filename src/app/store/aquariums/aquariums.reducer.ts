@@ -1,8 +1,8 @@
 import { EntityAdapter, createEntityAdapter } from "@ngrx/entity";
-import { AquariumDto } from "src/swagger/api-client";
 import { AquariumsState } from "./aquariums.model";
 import { createFeature, createReducer, createSelector, on } from "@ngrx/store";
 import { AquariumsActions } from "./aquariums.actions";
+import { AquariumDto } from "../../../swagger/api-client";
 
 export const adapter: EntityAdapter<AquariumDto> = createEntityAdapter<AquariumDto>();
 

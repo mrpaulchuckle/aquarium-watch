@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Params } from '@angular/router';
-import { AppState } from 'src/app/store';
 import { Store } from '@ngrx/store';
-import { AquariumsActions } from 'src/app/store/aquariums/aquariums.actions';
-import { aquariumsFeature } from 'src/app/store/aquariums/aquariums.reducer';
-import { AquariumsHelper } from 'src/app/helpers/aquariums.helper';
+import { aquariumsFeature } from '../../store/aquariums/aquariums.reducer';
+import { AquariumsHelper } from '../../helpers/aquariums.helper';
+import { AppState } from '../../store';
+import { AquariumsActions } from '../../store/aquariums/aquariums.actions';
 
 @Component({
   selector: 'app-aquarium-detail',
